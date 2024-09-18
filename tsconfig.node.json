@@ -6,7 +6,7 @@
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true
   },
-  "include": ["./resources/js/tailadmin/lib.d.ts"],
+  "include": ["./resources/js/**/*"],
   "exclude": ["node_modules"],
   //   "include": ["vite.config.ts"]
 }
