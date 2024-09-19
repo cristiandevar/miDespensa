@@ -13,6 +13,9 @@ export default {
     ],
     darkMode: 'class',
     theme: {
+        fontFamily: {
+            satoshi: ['Satoshi', 'sans-serif'],
+        },
         screens: {
             '2xsm': '375px',
             xsm: '425px',
@@ -21,7 +24,7 @@ export default {
         },
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Figtree', ...defaultTheme.fontFamily.sans]
             },
             colors: {
                 current: 'currentColor',

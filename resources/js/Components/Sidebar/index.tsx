@@ -76,14 +76,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           aria-expanded={sidebarOpen}
           className="block lg:hidden"
         >
-        {/* <a
-            className="block lg:hidden"
-            onClick={mostrarocultarmenu}
-            aria-controls="sidebar"
-            aria-expanded={sidebarOpen}
-        >
-            <i className="fa-solid fa-bars"></i>
-        </a> */}
           <svg
             className="fill-current"
             width="20"
@@ -114,17 +106,18 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               {/* <!-- Menu Item Dashboard --> */}
               <SidebarLinkGroup
                 activeCondition={
-                  pathname === '/' || pathname.includes('dashboard')
+                    pathname === '/administracion' ||
+                    pathname.includes('administracion')
                 }
               >
                 {(handleClick, open) => {
                   return (
                     <React.Fragment>
                       <NavLink
-                        href={route('dashboard')}
+                        // href={route('user')}
                         className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark ${
-                          (pathname === '/' ||
-                            pathname.includes('dashboard')) &&
+                          (pathname === '/administracion' ||
+                            pathname.includes('administracion')) &&
                           'bg-graydark'
                         }`}
                         onClick={(e) => {
@@ -159,7 +152,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             fill=""
                           />
                         </svg>
-                        Inicio
+                        <div className="mr-5">
+
+                        Administracion
+                        </div>
                         <svg
                           className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${
                             open && 'rotate-180'
