@@ -1,10 +1,6 @@
 import { Link } from '@inertiajs/react';
-// import DropdownMessage from './DropdownMessage';
-// import DropdownNotification from './DropdownNotification';
-import DropdownUser from './DropdownUser';
+import DropdownUser from '@/Components/Header/DropdownUser';
 import LogoIcon from '@/images/logo/logo-icon.svg';
-import DarkModeSwitcher from '@/Components/Header/DarkModeSwitcher';
-import {useUser} from '@/Hooks/useUser';
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
   setSidebarOpen: (arg0: boolean) => void;
@@ -106,7 +102,7 @@ const Header = (props: {
         <div className="flex items-center gap-3 2xsm:gap-7">
           <ul className="flex items-center gap-2 2xsm:gap-4">
             {/* <!-- Dark Mode Toggler --> */}
-            <DarkModeSwitcher />
+            {/* <DarkModeSwitcher /> */}
             {/* <!-- Dark Mode Toggler --> */}
 
             {/* <!-- Notification Menu Area --> */}

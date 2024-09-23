@@ -1,8 +1,6 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
-// import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
-import LogoDark from '../../images/logo/logo-dark.svg';
-import Logo from '../../images/logo/logo.svg';
+import LogoDark from '@/images/logo/logo-dark.svg';
+import Logo from '@/images/logo/logo.svg';
 import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
@@ -30,7 +28,7 @@ export default function SignUp() {
     return (
     <>
         <GuestLayout>
-            <Head title="Registro" />
+            <Head title="Registrate" />
 
             <div className="rounded-sm border border-stroke bg-white shadow-default">
                 <div className="flex flex-wrap items-center">
@@ -41,8 +39,7 @@ export default function SignUp() {
                         <img className="dark:hidden" src={LogoDark} alt="Logo" />
                     </Link>
                     <p className="2xl:px-20">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                        suspendisse.
+                        Registrate para comenzar a manejar tu despensa de manera eficiente y automática.
                     </p>
 
                     <span className="mt-15 inline-block">
@@ -341,7 +338,7 @@ export default function SignUp() {
 
                         <div className="mb-5">
                             <PrimaryButton className="justify-center w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90" disabled={processing}>
-                                Registrar
+                                Registrarme
                             </PrimaryButton>
                         </div>
 

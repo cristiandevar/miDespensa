@@ -4,14 +4,9 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
-
-
-// import { Link } from 'react-router-dom';
-import Breadcrumb from '../../Components/Breadcrumbs/Breadcrumb';
-import LogoDark from '../../images/logo/logo-dark.svg';
-import Logo from '../../images/logo/logo.svg';
+import LogoDark from '@/images/logo/logo-dark.svg';
+import Logo from '@/images/logo/logo.svg';
 import { Head, Link, useForm } from '@inertiajs/react';
-// import DefaultLayout from '@/Layouts/DefaultLayout';
 import GuestLayout from '@/Layouts/GuestLayout';
 
 export default function SignIn({ status, canResetPassword }) {
@@ -32,7 +27,7 @@ export default function SignIn({ status, canResetPassword }) {
     return (
     <>
       <GuestLayout>
-        <Head title="Ingresar" />
+        <Head title="Ingresa" />
 
         <div className="rounded-sm border border-stroke bg-white shadow-default">
             <div className="flex flex-wrap items-center">
@@ -44,8 +39,7 @@ export default function SignIn({ status, canResetPassword }) {
                 </Link>
 
                 <p className="2xl:px-20">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    suspendisse.
+                    Administra tu despensa de una manera eficiente y comoda desde tu computadora o celular.
                 </p>
 
                 <span className="mt-15 inline-block">
