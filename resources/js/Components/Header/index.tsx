@@ -1,6 +1,10 @@
 import { Link } from '@inertiajs/react';
-import DropdownUser from '@/Components/Header/DropdownUser';
+// import DropdownMessage from './DropdownMessage';
+// import DropdownNotification from './DropdownNotification';
+import DropdownUser from './DropdownUser';
 import LogoIcon from '@/images/logo/logo-icon.svg';
+// import DarkModeSwitcher from '@/Components/Header/DarkModeSwitcher';
+// import {useUser} from '@/Hooks/useUser';
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
   setSidebarOpen: (arg0: boolean) => void;
