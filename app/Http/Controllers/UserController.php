@@ -16,7 +16,7 @@ class UserController extends Controller
         $users = User::all();
 
         return Inertia::render(
-            'User/index',
+            'User/Index',
             [
                 'status' => session('status'),
                 'users'  => $users
@@ -29,7 +29,12 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render(
+            'User/FormCreate',
+            [
+                'status' => session('status'),
+            ]
+        );
     }
 
     /**
@@ -53,7 +58,23 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $user_to_update = User::findorfail($user);
+        if ($user_to_update) {
+            return Inertia::render(
+                // 'User/FormUpdate',
+                // [
+                //     'status' => session('status'),
+                //     'user'  => $user_to_update
+                // ]
+                'User/Index',
+            [
+                'status' => session('status'),
+                'users'  => $users
+            ]
+            );
+        } else {
+            // return redirect()->route('users.index')->with('status', 'Error al editar usaurio');
+        }
     }
 
     /**
