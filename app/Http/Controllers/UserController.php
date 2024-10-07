@@ -50,7 +50,23 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        // dd($user);
+        // $user_to_update = User::findorfail($user);
+        // if ($user_to_update) {
+            return Inertia::render(
+                // 'User/FormUpdate',
+                // [
+                //     'status' => session('status'),
+                //     'user'  => $user_to_update
+                // ]
+                'User/Show',
+                [
+                    'status' => session('status'),
+                    'users'  => $user
+                ]
+            );
+        // }
+        // return redirect()->route('users');
     }
 
     /**

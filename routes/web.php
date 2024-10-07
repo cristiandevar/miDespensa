@@ -37,4 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/users', UserController::class);
 });
 
+Route::get('/{any}', function () {
+    return view('app');
+})->where('any', '.*');
+
 require __DIR__.'/auth.php';
