@@ -8,6 +8,7 @@ import AddButton from '@/Components/ABM/AddButton'
 
 export default function Index(){
     const users = usePage().props.users;
+    const errorIndex = usePAge().props.error;
     const columns = [
         'Nro',
         'Nombre',
@@ -20,6 +21,9 @@ export default function Index(){
     return (
     <>
       <AuthenticatedLayout>
+        {errorIndex&&
+            <div style={"color:red"}>{errorIndex}</div>
+        }
         <AddButton hrefButton="users.create" method="put">Nuevo</AddButton>
         <Table columns={columns} >
             {users.map((user, key)=>{

@@ -50,23 +50,27 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        // dd($user);
-        // $user_to_update = User::findorfail($user);
-        // if ($user_to_update) {
+        if ($user) {
+
             return Inertia::render(
-                // 'User/FormUpdate',
-                // [
-                //     'status' => session('status'),
-                //     'user'  => $user_to_update
-                // ]
                 'User/Show',
                 [
                     'status' => session('status'),
-                    'users'  => $user
-                ]
+                    'user'  => $user
+                    ]
             );
-        // }
-        // return redirect()->route('users');
+        } else {
+
+            $users = User::all();
+            return Inertia::render(
+                'User/Index',
+                [
+                    'status' => session('status'),
+                    'error' => 'Error al ver Usuario',
+                    'users'  => $users
+                    ]
+            );
+        }
     }
 
     /**
@@ -74,22 +78,25 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $user_to_update = User::findorfail($user);
-        if ($user_to_update) {
+        // $user_to_update = User::findorfail($user);
+        if ($user) {
             return Inertia::render(
-                // 'User/FormUpdate',
-                // [
-                //     'status' => session('status'),
-                //     'user'  => $user_to_update
-                // ]
-                'User/Index',
-            [
-                'status' => session('status'),
-                'users'  => $users
-            ]
+                'User/FormUpdate',
+                [
+                    'status' => session('status'),
+                    'users'  => $user
+                ]
             );
         } else {
-            // return redirect()->route('users.index')->with('status', 'Error al editar usaurio');
+            $users = USer::all();
+            return Inertia::render(
+                'User/Index',
+                [
+                    'status' => session('status'),
+                    'error' => 'Error al Editar Usuario',
+                    'users'  => $users
+                    ]
+            );
         }
     }
 
