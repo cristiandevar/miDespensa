@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
 class UserController extends Controller
@@ -42,7 +46,42 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        try {
+
+
+            $array['name'] = $request->name;
+            $array['email'] = $request->email;
+            $array['password'] = Hash::make($request->password);
+            $user = new User($array);
+
+            $user->save();
+
+            $error = false;
+
+            return Inertia::render(
+                'User/Index',
+                [
+                    'status' => session('status'),
+                    'successMsg' => '¡El usuario se ha creado exitosamente!',
+                    'users' => User::all()
+                ]
+            );
+        }
+        catch(Exception $e){
+            $error = true;
+
+            return Inertia::render(
+                'User/Index',
+                [
+                    'status' => session('status'),
+                    'errorMsg' => '¡Ocurrio un error al crear el usuario!'
+                ]
+            );
+
+        }
+
+
     }
 
     /**
@@ -84,11 +123,11 @@ class UserController extends Controller
                 'User/FormUpdate',
                 [
                     'status' => session('status'),
-                    'users'  => $user
+                    'user'  => $user
                 ]
             );
         } else {
-            $users = USer::all();
+            $users = User::all();
             return Inertia::render(
                 'User/Index',
                 [
@@ -103,9 +142,35 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(UserUpdateRequest $request, User $user)
     {
-        //
+        if ($user) {
+
+            // dd($request, $user);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->active = $request->active;
+
+            // dd($user, $request);
+            $user->update();
+
+            return Inertia::render(
+                'User/FormUpdate',
+                [
+                    'status' => session('status'),
+                    'user_updated'  => $user,
+                    'user'=> Auth::user()
+                ]
+            );
+
+            // return Inertia::render(
+            //     'User/FormUpdate',
+            //     [
+            //         'status' => session('status'),
+            //         'user'  => $user
+            //     ]
+            // );
+        }
     }
 
     /**

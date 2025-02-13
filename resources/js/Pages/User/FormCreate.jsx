@@ -7,7 +7,13 @@ export default function FormCreate({children}) {
     return (
     <>
         <AuthenticatedLayout>
-            <Form routeForm="users.store" titleForm="Crear Usuario" labelButton="Crear" msgSuccess="Se ha creado exitosamente" msgError="Error al crear Usuario"/>
+            <Form
+                routeForm="users.store"
+                titleForm="Crear Usuario"
+                labelButton="Crear"
+                msgSuccess="Se ha creado exitosamente"
+                msgError="Error al crear Usuario"
+            />
         </AuthenticatedLayout>
     </>
   );

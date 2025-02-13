@@ -14,7 +14,7 @@ export default function AddButton({
     };
 
     return (
-        <div className="align-right">
+        <div className="flex justify-end">
 
             <PrimaryButton
                 className={className}
