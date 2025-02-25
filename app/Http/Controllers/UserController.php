@@ -180,4 +180,20 @@ class UserController extends Controller
     {
         //
     }
+
+    public function active(Request $request, User $user)
+    {
+        $user->active = true;
+        $user->update();
+
+        return to_route('users.index');
+    }
+
+    public function deactive(Request $request, User $user)
+    {
+        $user->active = false;
+        $user->update();
+        
+        return to_route('users.index');
+    }
 }

@@ -35,6 +35,8 @@ Route::middleware('auth')->group(function () {
 
     //Users
     Route::resource('/users', UserController::class);
+    Route::patch('/users.active/{user}', [UserController::class, 'active'])->name('users.active');
+    Route::patch('/users.deactive/{user}', [UserController::class, 'deactive'])->name('users.deactive');
 });
 
 // Route::get('/{any}', function () {
