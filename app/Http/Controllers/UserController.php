@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
 use Exception;
@@ -44,11 +45,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserCreateRequest $request)
     {
 
         try {
-
 
             $array['name'] = $request->name;
             $array['email'] = $request->email;
@@ -69,15 +69,13 @@ class UserController extends Controller
             );
         }
         catch(Exception $e){
-            $error = true;
-
-            return Inertia::render(
-                'User/Index',
-                [
-                    'status' => session('status'),
-                    'errorMsg' => '¡Ocurrio un error al crear el usuario!'
-                ]
-            );
+            return redirect()
+                ->route('users.create')
+                ->withErrors(
+                    [
+                        'errorMsg' => '¡Ocurrió un error al crear el usuario!'
+                    ]
+                );
 
         }
 
@@ -170,6 +168,14 @@ class UserController extends Controller
             //         'user'  => $user
             //     ]
             // );
+        } else {
+            return redirect()
+                ->route('users.edit')
+                ->withErrors(
+                    [
+                        'errorMsg' => '¡Ocurrió un error al crear el usuario!'
+                    ]
+                );
         }
     }
 
@@ -191,9 +197,20 @@ class UserController extends Controller
 
     public function deactive(Request $request, User $user)
     {
-        $user->active = false;
-        $user->update();
-        
-        return to_route('users.index');
+        if ($user != Auth::user()->id) {
+
+            $user->active = false;
+            $user->update();
+
+            return to_route('users.index');
+        } else {
+            return redirect()
+                ->route('users.index')
+                ->withErrors(
+                    [
+                        'errorMsg' => '¡Ocurrió un error al desactivar el usuario!'
+                    ]
+                );
+        }
     }
 }

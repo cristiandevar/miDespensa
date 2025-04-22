@@ -155,7 +155,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                         </svg>
                         <div className="mr-5">
 
-                        Administracion
+                        Administración
                         </div>
                         <svg
                           className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${

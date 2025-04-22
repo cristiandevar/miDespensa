@@ -5,7 +5,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '../../Components/SecondaryButton';
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Head, Link, useForm, usePage } from '@inertiajs/react';
 // import InputLabel from '@/Components/InputLabel';
 // import TextInput from '@/Components/TextInput';
 
@@ -22,6 +22,7 @@ setError({
 
 export default function Form({routeForm, titleForm, labelButton, msgSuccess, msgError, children, dataForm, id}) {
     const [showMsgSuccess, setShowMsgSuccess] = useState(false);
+    const [showMsgError, setShowMsgError] = useState(false);
     const { data, setData, setError, post, put, patch, processing, errors, reset } = useForm({
         id: id?id:null,
         name: id?dataForm.name:'',
@@ -50,6 +51,10 @@ export default function Form({routeForm, titleForm, labelButton, msgSuccess, msg
                 onSuccess:() => {
                     reset();
                     setShowMsgSuccess(true);
+                },
+                onError: (errors) => {
+                    // Maneja los errores aquí
+                    setShowMsgError(true); // Suponiendo que tienes un estado para mostrar mensajes de error
                 }
             })
         :
@@ -61,6 +66,10 @@ export default function Form({routeForm, titleForm, labelButton, msgSuccess, msg
                         active : page.props.user_updated.active
                     });
                     setShowMsgSuccess(true);
+                },
+                onError: (errors) => {
+                    // Maneja los errores aquí
+                    setShowMsgError(true); // Suponiendo que tienes un estado para mostrar mensajes de error
                 }
             });
 
@@ -81,6 +90,9 @@ export default function Form({routeForm, titleForm, labelButton, msgSuccess, msg
 
                     {showMsgSuccess &&
                         <div style={{color:'green'}}>{msgSuccess}</div>
+                    }
+                    {showMsgError &&
+                        <div style={{color:'red'}}>{msgError}</div>
                     }
                         <h2 className="text-2xl font-bold mb-6 text-gray-900">{titleForm}</h2>
                         <form onSubmit={submit}>
@@ -250,21 +262,25 @@ export default function Form({routeForm, titleForm, labelButton, msgSuccess, msg
                                 :
                                 ''
                             }
-
-                            <div className="mb-6">
-                                <label htmlFor="active" className="flex items-center text-gray-700 text-sm font-bold mb-2 text-xs">
-                                    <input
-                                        id="active"
-                                        type="checkbox"
-                                        name="active"
-                                        checked={data.active}
-                                        className="mr-2 h-5 w-5 text-blue-600 border-gray-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded"
-                                        onChange={(e) => setData("active", e.target.checked)}
-                                    />
-                                    Usuario activo
-                                </label>
-                                <InputError message={errors.active} className="mt-2" />
-                            </div>
+                            {
+                                usePage().props.auth.user.id != data.id?
+                                <div className="mb-6">
+                                    <label htmlFor="active" className="flex items-center text-gray-700 text-sm font-bold mb-2 text-xs">
+                                        <input
+                                            id="active"
+                                            type="checkbox"
+                                            name="active"
+                                            checked={data.active}
+                                            className="mr-2 h-5 w-5 text-blue-600 border-gray-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded"
+                                            onChange={(e) => setData("active", e.target.checked)}
+                                        />
+                                        Usuario activo
+                                    </label>
+                                    <InputError message={errors.active} className="mt-2" />
+                                </div>
+                                :
+                                ''
+                            }
 
 
                             <div className="mb-5">
