@@ -157,7 +157,7 @@ class UserController extends Controller
                 [
                     'status' => session('status'),
                     'user_updated'  => $user,
-                    'user'=> Auth::user()
+                    'user'=> $user
                 ]
             );
 

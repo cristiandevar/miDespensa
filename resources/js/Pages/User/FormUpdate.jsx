@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, usePage } from '@inertiajs/react';
-import Form from './Form';
+import UserForm from './UserForm';
 
 export default function FormUpdate({user}) {
     // const user = usePage().props.user;
     return (
     <>
         <AuthenticatedLayout>
-            <Form
+            <UserForm
                 routeForm="users.update"
                 titleForm="Actualizar Usuario"
                 labelButton="Actualizar"

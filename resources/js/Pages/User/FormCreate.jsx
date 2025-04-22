@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
-import Form from './Form';
+import UserForm from './UserForm';
 
 export default function FormCreate({children}) {
     return (
     <>
         <AuthenticatedLayout>
-            <Form
+            <UserForm
                 routeForm="users.store"
                 titleForm="Crear Usuario"
                 labelButton="Crear"
